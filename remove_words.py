@@ -52,7 +52,7 @@ for doc_content in doc_content_list:
         # word not in stop_words and word_freq[word] >= 5
         if dataset == 'mr':
             doc_words.append(word)
-        elif word not in stop_words and word_freq[word] >= 5:
+        elif word not in stop_words and word_freq[word] >= 3:
             doc_words.append(word)
 
     doc_str = ' '.join(doc_words).strip()

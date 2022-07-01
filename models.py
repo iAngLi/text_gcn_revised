@@ -1,6 +1,7 @@
 from layers import *
 from metrics import *
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
@@ -164,7 +165,7 @@ class GCN(Model):
         self.layers.append(GraphConvolution(input_dim=self.input_dim,
                                             output_dim=FLAGS.hidden1,
                                             placeholders=self.placeholders,
-                                            act=tf.nn.relu,
+                                            act=tf.nn.relu6,
                                             dropout=True,
                                             featureless=True,
                                             sparse_inputs=True,
@@ -176,6 +177,6 @@ class GCN(Model):
                                             act=lambda x: x, #
                                             dropout=True,
                                             logging=self.logging))
-
+        
     def predict(self):
         return tf.nn.softmax(self.outputs)

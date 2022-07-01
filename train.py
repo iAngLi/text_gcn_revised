@@ -2,7 +2,8 @@ from __future__ import division
 from __future__ import print_function
 
 import time
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from sklearn import metrics
 from utils import *
@@ -73,6 +74,7 @@ else:
     raise ValueError('Invalid argument for model: ' + str(FLAGS.model))
 
 # Define placeholders
+tf.disable_eager_execution()
 placeholders = {
     'support': [tf.sparse_placeholder(tf.float32) for _ in range(num_supports)],
     'features': tf.sparse_placeholder(tf.float32, shape=tf.constant(features[2], dtype=tf.int64)),
